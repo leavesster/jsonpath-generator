@@ -1,0 +1,13 @@
+import type { ArrayType } from "./Items.svelte";
+import type { ObjType } from "./Obj.svelte";
+import type { Primitive } from "./Value.svelte";
+
+export function isArray(obj: Primitive | ObjType | ArrayType): obj is ArrayType {
+    return Array.isArray(obj);
+}
+export function isObjType(obj: Primitive | ObjType | ArrayType): obj is ObjType {
+    return !isArray(obj) && typeof obj === "object";
+}
+export function isPrimitive(obj: Primitive | ObjType | ArrayType): obj is Primitive {
+    return !isArray(obj) && !isObjType(obj);
+}
