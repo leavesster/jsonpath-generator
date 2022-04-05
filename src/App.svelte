@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let value: string = '{"a": {}, "b": []}';
+	export let value: string = '';
 	import Obj from "./Obj.svelte";
 	import Items from "./Items.svelte";
 

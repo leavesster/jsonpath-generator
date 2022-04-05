@@ -11,17 +11,15 @@
     import Items from "./Items.svelte";
 </script>
 
-<div data-type="kv" data-level={level}>
-    <span style="white-space: pre;">{space}</span>
-    <span class="key" contenteditable="true">"{key}"</span>:
-    {#if isArray(value)}
-        <Items items={value} level={level + 1}></Items>
-    {:else if isObjType(value)}
-        <Obj object={value} level={level + 1}></Obj>
-    {:else if isPrimitive(value)}
-        <Value {value}/>
-    {/if}
-</div>
+<span style="white-space: pre;">{space}</span>
+<span class="key" contenteditable="true">"{key}"</span>:
+{#if isArray(value)}
+    <Items items={value} level={level + 1}></Items>
+{:else if isObjType(value)}
+    <Obj object={value} level={level + 1}></Obj>
+{:else if isPrimitive(value)}
+    <Value {value} level={level + 1}/>
+{/if}
 
 <style>
     .key {

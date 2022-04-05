@@ -10,20 +10,25 @@
 
     export let items: ArrayType;
     export let level: number = 0;
+    const space = " ".repeat(level * 4);
+
 </script>
 
 {#if items.length === 0}
 <span>{"[]"}</span>
 {:else}
-<span>{"["}</span>
-    {#each items as item}
+<span>{"["}<br></span>
+    {#each items as item, i}
         {#if isArray(item)}
             <svelte:self items={item} level={level + 1}></svelte:self>
         {:else if isObjType(item)}
-            <Obj object={item} level={level + 1}></Obj>
+            <Obj object={item} level={level + 1} inList={true}></Obj>
         {:else if isPrimitive(item)}
-            <Value value={item}></Value>
+            <Value value={item} level={level + 1} inKv={false}></Value>
+        {/if}
+        {#if i < items.length - 1}
+            ,<br>
         {/if}
     {/each}
-<span>{"]"}</span>
+<span style="white-space: pre;"><br>{space}{"]"}</span>
 {/if}
