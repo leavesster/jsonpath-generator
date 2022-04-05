@@ -9,16 +9,17 @@
     import {isArray, isObjType, isPrimitive} from "./types";
     import type { ArrayType } from "./List.svelte";
     import List from "./List.svelte";
+    import { path } from "./jsonpath";
 
     
     export let jsonpath: string = "$";
-    function path() {
-        console.log(jsonpath)
+    function showPath() {
+        path.update(n => n = jsonpath);
     }
 </script>
 
 <span style="white-space: pre;">{space}</span>
-<span class="key" style="cursor:pointer;" on:click={path}>"{key}"</span>:
+<span class="key" style="cursor:pointer;" on:click={showPath}>"{key}"</span>:
 {#if isArray(value)}
     <List items={value} level={level + 1} jsonpath={jsonpath}></List>
 {:else if isObjType(value)}

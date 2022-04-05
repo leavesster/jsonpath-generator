@@ -2,6 +2,7 @@
 	export let value: string = '';
 	import Obj from "./Obj.svelte";
 	import List from "./List.svelte";
+	import {path, fold} from "./jsonpath";
 
 	function parse(str: string) {
 		try {
@@ -11,29 +12,37 @@
 			return "";
 		}
 	}
+
 	$: result = parse(value);
+	
 </script>
 
-<textarea bind:value={value}></textarea>
+<div class="jsonpath">
+	<input type="checkbox" name="fold" bind:checked={$fold}><span>展开所有</span>
+	<span>JSONPath: </span><span>{$path}</span>
+</div>
 <div>
-{#key result && result !== ""}
-	{#if Array.isArray(result)}
-		<List items={result}/>
-	{:else}
-		<Obj object={result}></Obj>
-	{/if}
-{/key}
+	<textarea class="input" bind:value={value}></textarea>
+	<div class="json">
+	{#key result && result !== ""}
+		{#if Array.isArray(result)}
+			<List items={result}/>
+		{:else}
+			<Obj object={result}></Obj>
+		{/if}
+	{/key}
+	</div>
 </div>
 
 <style>
 	textarea {
-		width: 200px;
-		height: 100%;
+		width: 400px;
 		font-family: monospace;
 		font-size: 14px;
 		float: left;
+		height: calc(100vh - 50px);
 	}
-	div {
+	.json {
 		padding-left: 8px;
 		height: 100%;
 		overflow: auto;
