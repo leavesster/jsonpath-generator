@@ -31,7 +31,7 @@
 {:else}
 <span on:click={click} style="cursor:pointer;">{"["}<br></span>
     {#each items as item, i}
-        {@const subpath = jsonpath + "." + i}
+        {@const subpath = jsonpath + "[" + i + "]"}
         {#if isArray(item)}
             <svelte:self items={item} level={level + 1} jsonpath={subpath}></svelte:self>
         {:else if isObjType(item)}

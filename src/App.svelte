@@ -18,8 +18,10 @@
 </script>
 
 <div class="jsonpath">
-	<input type="checkbox" name="fold" bind:checked={$fold}><span>展开所有</span>
-	<span>JSONPath: </span><span>{$path}</span>
+	<label class="options"><input type="checkbox" name="fold" bind:checked={$fold}>展开所有子项</label>
+	<div class="path">
+		<span class="prefix">JSONPath: </span><span>{$path}</span>
+	</div>
 </div>
 <div>
 	<textarea class="input" bind:value={value}></textarea>
@@ -35,6 +37,18 @@
 </div>
 
 <style>
+	.options {
+		display: inline;
+		user-select: none;
+	}
+	.path {
+		display: inline-block;
+		border: 1px solid #ccc;
+		min-width: 200px;
+	}
+	.prefix {
+		user-select: none;
+	}
 	textarea {
 		width: 400px;
 		font-family: monospace;
