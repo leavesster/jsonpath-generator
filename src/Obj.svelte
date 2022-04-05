@@ -14,6 +14,7 @@
     export let level: number = 0;
     export let inList: boolean = false;
     export let fold: boolean = level !== 0;
+    export let jsonpath: string = "$";
     const space = " ".repeat(level * 4);
 
     $: keys = Object.keys(object || {});
@@ -34,7 +35,8 @@
 <span on:click={click} style="cursor:pointer;">{"{"}</span>
     <br>
     {#each keys as key, i}
-        <Kv key={key} value={object[key]} level={level + 1}></Kv>
+        {@const subpath = jsonpath + "." + key}
+        <Kv key={key} value={object[key]} level={level + 1}  jsonpath={subpath}></Kv>
         {#if i < keys.length - 1}
             <Comma></Comma>
         {/if}
