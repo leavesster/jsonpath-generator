@@ -19,7 +19,9 @@
 {#if keys.length === 0}
 <span>{"{}"}</span>
 {:else}
+<span>{"{"}</span>
     {#each keys as key}
         <Kv key={key} value={object[key]} level={level + 1}></Kv>
     {/each}
+<span>{"}"}</span>
 {/if}

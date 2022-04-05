@@ -15,6 +15,7 @@
 {#if items.length === 0}
 <span>{"[]"}</span>
 {:else}
+<span>{"["}</span>
     {#each items as item}
         {#if isArray(item)}
             <svelte:self items={item} level={level + 1}></svelte:self>
@@ -24,4 +25,5 @@
             <Value value={item}></Value>
         {/if}
     {/each}
+<span>{"]"}</span>
 {/if}

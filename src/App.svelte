@@ -22,7 +22,6 @@
 	{:else}
 		<Obj object={result}></Obj>
 	{/if}
-
 {/key}
 </div>
 
