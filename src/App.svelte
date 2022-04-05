@@ -20,7 +20,7 @@
 <div class="jsonpath">
 	<label class="options"><input type="checkbox" name="fold" bind:checked={$fold}>折叠子项</label>
 	<div class="path">
-		<span class="prefix">JSONPath: </span><span>{$path}</span>
+		<span class="prefix">JSONPath: </span><span class="result">{$path}</span>
 	</div>
 </div>
 <div>
@@ -42,12 +42,16 @@
 		user-select: none;
 	}
 	.path {
-		display: inline-block;
+		display: inline-flex;
 		border: 1px solid #ccc;
 		min-width: 200px;
 	}
 	.prefix {
 		user-select: none;
+	}
+	.result {
+		user-select: all;
+		flex-grow: 1;
 	}
 	textarea {
 		width: 400px;
