@@ -13,9 +13,14 @@
     export let object: ObjType;
     export let level: number = 0;
     export let inList: boolean = false;
+    export let fold: boolean = level !== 0;
     const space = " ".repeat(level * 4);
 
     $: keys = Object.keys(object || {});
+
+    function click() {
+        fold = !fold
+    }
 </script>
 
 {#if inList}
@@ -23,8 +28,10 @@
 {/if}
 {#if keys.length === 0}
 <span>{"{}"}</span>
+{:else if fold === true}
+<span on:click={click} style="cursor:pointer;">Object[{keys.length}]</span>
 {:else}
-<span>{"{"}</span>
+<span on:click={click} style="cursor:pointer;">{"{"}</span>
     <br>
     {#each keys as key, i}
         <Kv key={key} value={object[key]} level={level + 1}></Kv>

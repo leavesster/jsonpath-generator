@@ -11,14 +11,21 @@
 
     export let items: ArrayType;
     export let level: number = 0;
+    export let fold: boolean = level !== 0;
     const space = " ".repeat(level * 4);
+
+    function click() {
+        fold = !fold
+    }
 
 </script>
 
 {#if items.length === 0}
 <span>{"[]"}</span>
+{:else if fold === true}
+<span on:click={click} style="cursor:pointer;">Array[{items.length}]</span>
 {:else}
-<span>{"["}<br></span>
+<span on:click={click} style="cursor:pointer;">{"["}<br></span>
     {#each items as item, i}
         {#if isArray(item)}
             <svelte:self items={item} level={level + 1}></svelte:self>
