@@ -51,6 +51,7 @@
 	}
 	textarea {
 		width: 400px;
+		max-width: 100vh;
 		font-family: monospace;
 		font-size: 14px;
 		float: left;
