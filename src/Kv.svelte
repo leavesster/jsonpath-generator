@@ -7,14 +7,14 @@
     import Value, {Primitive} from "./Value.svelte";
     import Obj, {ObjType} from "./Obj.svelte";
     import {isArray, isObjType, isPrimitive} from "./types";
-    import type { ArrayType } from "./Items.svelte";
-    import Items from "./Items.svelte";
+    import type { ArrayType } from "./List.svelte";
+    import List from "./List.svelte";
 </script>
 
 <span style="white-space: pre;">{space}</span>
 <span class="key" contenteditable="true">"{key}"</span>:
 {#if isArray(value)}
-    <Items items={value} level={level + 1}></Items>
+    <List items={value} level={level + 1}></List>
 {:else if isObjType(value)}
     <Obj object={value} level={level + 1}></Obj>
 {:else if isPrimitive(value)}

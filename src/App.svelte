@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let value: string = '';
 	import Obj from "./Obj.svelte";
-	import Items from "./Items.svelte";
+	import List from "./List.svelte";
 
 	function parse(str: string) {
 		try {
@@ -18,7 +18,7 @@
 <div>
 {#key result && result !== ""}
 	{#if Array.isArray(result)}
-		<Items items={result}/>
+		<List items={result}/>
 	{:else}
 		<Obj object={result}></Obj>
 	{/if}

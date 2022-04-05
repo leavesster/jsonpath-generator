@@ -1,4 +1,4 @@
-import type { ArrayType } from "./Items.svelte";
+import type { ArrayType } from "./List.svelte";
 import type { ObjType } from "./Obj.svelte";
 import type { Primitive } from "./Value.svelte";
 

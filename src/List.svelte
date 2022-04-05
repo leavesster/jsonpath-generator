@@ -7,6 +7,7 @@
     import type {ObjType} from "./Obj.svelte";
     import Obj from "./Obj.svelte";
     import {isArray, isObjType, isPrimitive} from "./types";
+    import Comma from "./Comma.svelte";
 
     export let items: ArrayType;
     export let level: number = 0;
@@ -27,7 +28,7 @@
             <Value value={item} level={level + 1} inKv={false}></Value>
         {/if}
         {#if i < items.length - 1}
-            ,<br>
+            <Comma></Comma>
         {/if}
     {/each}
 <span style="white-space: pre;"><br>{space}{"]"}</span>
