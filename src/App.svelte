@@ -58,13 +58,20 @@
 		flex-wrap: wrap;
 		flex-direction: row;
 	}
-	textarea {
-		min-width: 200px;
-		font-family: monospace;
+	.input {
 		font-size: 14px;
-		float: left;
-		flex-grow: 1;
-		height: calc(100vh - 50px);
+	}
+
+	@media screen and (min-width: 600px) {
+		.input {
+			width: 50vw;
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		.input {
+			width: 100%;
+		}
 	}
 	.json {
 		padding-left: 8px;
