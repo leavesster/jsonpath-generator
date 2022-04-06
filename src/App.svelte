@@ -23,7 +23,7 @@
 		<span class="prefix">JSONPath: </span><span class="result">{$path}</span>
 	</div>
 </div>
-<div>
+<div class="main">
 	<textarea class="input" bind:value={value}></textarea>
 	<div class="json">
 	{#key result && result !== ""}
@@ -53,17 +53,23 @@
 		user-select: all;
 		flex-grow: 1;
 	}
+	.main {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+	}
 	textarea {
-		width: 400px;
-		max-width: 100vw;
+		min-width: 200px;
 		font-family: monospace;
 		font-size: 14px;
 		float: left;
+		flex-grow: 1;
 		height: calc(100vh - 50px);
 	}
 	.json {
 		padding-left: 8px;
 		height: 100%;
+		flex-grow: 1;
 		overflow: auto;
 	}
 </style>
