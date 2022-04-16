@@ -73,8 +73,12 @@
 	}
 
 	@media screen and (min-width: 600px) {
+		.main {
+			flex-wrap: nowrap;
+		}
 		.input {
-			width: 50vw;
+			width: 50%;
+			flex-shrink: 0;
 		}
 	}
 
