@@ -18,6 +18,7 @@
 	function autoHeight() {
 		el.style.height = "auto";
 		el.style.height = `${Math.max(el.scrollHeight, 200)}px`;
+		console.log(`autoHeight: ${el.scrollHeight}px`);
 	}
 
 	$: result = parse(value);
@@ -67,6 +68,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
+		align-items: flex-start;
 	}
 	.input {
 		font-size: 14px;
