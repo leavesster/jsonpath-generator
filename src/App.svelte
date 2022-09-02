@@ -1,31 +1,13 @@
 <script lang="ts">
-	export let value: string = '';
+    import { writable } from "svelte/store";
 	import Obj from "./Obj.svelte";
 	import List from "./List.svelte";
 	import {path, fold} from "./jsonpath";
-	import { onMount } from "svelte";
 
-	function parse(str: string) {
-		try {
-			return JSON.parse(str);
-		} catch (e) {
-			console.error("parse json error:", e);
-			return "";
-		}
-	}
+    const json = writable({json: true});
+    window.json = json;
 
-	let el: HTMLTextAreaElement;
-	function autoHeight() {
-		el.style.height = "auto";
-		el.style.height = `${Math.max(el.scrollHeight, 200)}px`;
-		console.log(`autoHeight: ${el.scrollHeight}px`);
-	}
-
-	$: result = parse(value);
-
-	onMount(() => {
-		autoHeight();
-	});
+	$: result = $json as any;
 </script>
 
 <div class="jsonpath">
@@ -34,9 +16,7 @@
 		<span class="prefix">JSONPath: </span><span class="result">{$path}</span>
 	</div>
 </div>
-<div class="main">
-	<textarea class="input" type="text" on:input={autoHeight} bind:this={el} bind:value={value}></textarea>
-	<div class="json">
+<div class="json">
 	{#key result && result !== ""}
 		{#if Array.isArray(result)}
 			<List items={result}/>
@@ -44,7 +24,6 @@
 			<Obj object={result}></Obj>
 		{/if}
 	{/key}
-	</div>
 </div>
 
 <style>
