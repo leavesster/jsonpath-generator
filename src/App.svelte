@@ -74,4 +74,8 @@
 		flex-grow: 1;
 		overflow: auto;
 	}
+    :global(body) {
+        background-color: var(--vscode-editor-background);
+        color:var(--vscode-editor-foreground);
+    }
 </style>

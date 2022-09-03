@@ -26,12 +26,12 @@
 
 <style>
     .string {
-        color:goldenrod;
+        color:#fce38a;
     }
     .number {
-        color:cornflowerblue;
+        color:#95e1d3;
     }
     .boolean {
-        color:coral
+        color:#95e1d3
     }
 </style>

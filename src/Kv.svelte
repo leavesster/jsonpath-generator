@@ -30,6 +30,6 @@
 
 <style>
     .key {
-        color:grey;
+        color:var(--vscode-editor-foreground);
     }
 </style>
