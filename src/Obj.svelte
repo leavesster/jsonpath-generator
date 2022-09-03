@@ -11,6 +11,7 @@
     import type {Primitive} from "./Value.svelte";
     import {fold} from "./jsonpath";
 
+
     export let object: ObjType;
     export let level: number = 0;
     export let inList: boolean = false;
@@ -34,9 +35,9 @@
 {#if keys.length === 0}
 <span>{"{}"}</span>
 {:else if needFold === true}
-<span on:click={click} style="cursor:pointer;">Object[{keys.length}]</span>
+<span on:click={click} style="cursor:pointer;" class="folded">Object[{keys.length}]</span>
 {:else}
-<span on:click={click} style="cursor:pointer;">{"{"}</span>
+<span on:click={click} style="cursor:pointer;" class="unfolded">{"{"}</span>
     <br>
     {#each keys as key, i}
         {@const subpath = jsonpath + "." + key}

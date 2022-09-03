@@ -27,9 +27,9 @@
 {#if items.length === 0}
 <span>{"[]"}</span>
 {:else if needFold === true}
-<span on:click={click} style="cursor:pointer;">Array[{items.length}]</span>
+<span on:click={click} style="cursor:pointer;" class="folded">Array[{items.length}]</span>
 {:else}
-<span on:click={click} style="cursor:pointer;">{"["}<br></span>
+<span on:click={click} style="cursor:pointer;" class="unfolded">{"["}<br></span>
     {#each items as item, i}
         {@const subpath = jsonpath + "[" + i + "]"}
         {#if isArray(item)}

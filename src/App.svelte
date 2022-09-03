@@ -3,6 +3,7 @@
 	import Obj from "./Obj.svelte";
 	import List from "./List.svelte";
 	import {path, fold} from "./jsonpath";
+    // import unfolded from "../assets/unfolded.svg";
 
     const json = writable({json: true});
     window.json = json;
@@ -77,5 +78,23 @@
     :global(body) {
         background-color: var(--vscode-editor-background);
         color:var(--vscode-editor-foreground);
+    }
+    :global(.folded::before) {
+        content: "";
+        background:  url(../assets/folded.svg);
+        background-size: 10px;
+        background-size: contain;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+    }
+    :global(.unfolded::before) {
+        content: "";
+        background:  url(../assets/unfolded.svg);
+        background-size: 10px;
+        background-size: contain;
+        width: 15px;
+        height: 15px;
+        display: inline-block;
     }
 </style>
