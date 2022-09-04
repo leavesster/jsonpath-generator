@@ -27,9 +27,3 @@
 {:else if isPrimitive(value)}
     <Value {value} level={level + 1} jsonpath={jsonpath}/>
 {/if}
-
-<style>
-    .key {
-        color:grey;
-    }
-</style>

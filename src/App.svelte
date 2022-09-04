@@ -82,26 +82,14 @@
 			width: 100%;
 		}
 	}
-    :global(body) {
-        background-color: var(--vscode-editor-background);
-        color:var(--vscode-editor-foreground);
+
+    :global(.key) {
+        color:gray;
     }
     :global(.folded::before) {
-        content: "";
-        background:  url(../assets/folded.svg);
-        background-size: 10px;
-        background-size: contain;
-        width: 15px;
-        height: 15px;
-        display: inline-block;
+        background-color: #00adb5;
     }
     :global(.unfolded::before) {
-        content: "";
-        background:  url(../assets/unfolded.svg);
-        background-size: 10px;
-        background-size: contain;
-        width: 15px;
-        height: 15px;
-        display: inline-block;
+        background-color: #00adb5;
     }
 </style>
