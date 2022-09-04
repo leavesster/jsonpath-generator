@@ -8,6 +8,8 @@ import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
 
 const production = !process.env.ROLLUP_WATCH;
+const vscode = !!process.env.VSCODE;
+console.log('VSCODE:', vscode);
 
 function serve() {
 	let server;
@@ -31,9 +33,9 @@ function serve() {
 }
 
 export default {
-	input: 'src/main.ts',
+	input: vscode ? 'src/vscode.ts' : 'src/main.ts',
 	output: {
-		sourcemap: true,
+		sourcemap: !vscode,
 		format: 'iife',
 		name: 'app',
 		file: 'public/build/bundle.js'
