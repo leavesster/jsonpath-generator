@@ -1,9 +1,9 @@
 <script lang="ts">
 	export let value: string = '';
-	import Obj from "./Obj.svelte";
-	import List from "./List.svelte";
-	import {path, fold} from "./jsonpath";
+	import {path, fold, json} from "./jsonpath";
 	import { onMount } from "svelte";
+    import Json from "./Json.svelte"
+    import {i18n} from "./i18";
 
 	function parse(str: string) {
 		try {
@@ -21,7 +21,8 @@
 		console.log(`autoHeight: ${el.scrollHeight}px`);
 	}
 
-	$: result = parse(value);
+	$: json.set(parse(value));
+    let title = i18n("fold.title");
 
 	onMount(() => {
 		autoHeight();
@@ -29,22 +30,14 @@
 </script>
 
 <div class="jsonpath">
-	<label class="options"><input type="checkbox" name="fold" bind:checked={$fold}>折叠子项</label>
+	<label class="options"><input type="checkbox" name="fold" bind:checked={$fold}> {title} </label>
 	<div class="path">
 		<span class="prefix">JSONPath: </span><span class="result">{$path}</span>
 	</div>
 </div>
 <div class="main">
 	<textarea class="input" type="text" on:input={autoHeight} bind:this={el} bind:value={value}></textarea>
-	<div class="json">
-	{#key result && result !== ""}
-		{#if Array.isArray(result)}
-			<List items={result}/>
-		{:else}
-			<Obj object={result}></Obj>
-		{/if}
-	{/key}
-	</div>
+    <Json></Json>
 </div>
 
 <style>
@@ -54,13 +47,13 @@
 	}
 	.path {
 		display: inline-flex;
-		border: 1px solid #ccc;
 		min-width: 200px;
 	}
 	.prefix {
 		user-select: none;
 	}
 	.result {
+        border: 1px solid #ccc;
 		user-select: all;
 		flex-grow: 1;
 	}
@@ -88,12 +81,6 @@
 		.input {
 			width: 100%;
 		}
-	}
-	.json {
-		padding-left: 8px;
-		height: 100%;
-		flex-grow: 1;
-		overflow: auto;
 	}
     :global(body) {
         background-color: var(--vscode-editor-background);
