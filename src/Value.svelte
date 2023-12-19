@@ -8,11 +8,12 @@
     export let level: number = 0;
     export let inKv: boolean = true;
     export let jsonpath: string = "$";
-    import { path } from "./jsonpath";
+    import { path, pathList } from "./jsonpath";
 
     const space = " ".repeat(level * 4);
 
     $: type = typeof value === "boolean" ? "boolean" : typeof value === "number" ? "number" : "string";
+    pathList.update(n => n = [...n, jsonpath]);
     function showPath() {
         path.update(n => n = jsonpath);
     }
@@ -22,7 +23,9 @@
 {#if inKv === false}
 <span style="white-space: pre;">{space}</span>
 {/if}
-<span on:click={showPath} data-value={value} class="{type}">{type === "string" ? "\"" + value + "\"" : value}</span>
+<span on:click={showPath} on:keydown={showPath} data-value={value} class="{type}">
+    {type === "string" ? "\"" + value + "\"" : value}
+</span>
 
 <style>
     .string {

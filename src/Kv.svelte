@@ -19,7 +19,7 @@
 </script>
 
 <span style="white-space: pre;">{space}</span>
-<span class="key" style="cursor:pointer;" on:click={showPath}>"{key}"</span>:
+<span class="key" style="cursor:pointer;" on:click={showPath} on:keydown={showPath}>"{key}"</span>:
 {#if isArray(value)}
     <List items={value} level={level + 1} jsonpath={jsonpath}></List>
 {:else if isObjType(value)}

@@ -2,13 +2,16 @@
     import { writable } from "svelte/store";
 	import Obj from "./Obj.svelte";
 	import List from "./List.svelte";
-	import {path, fold} from "./jsonpath";
-    // import unfolded from "../assets/unfolded.svg";
+	import {path, fold, pathList} from "./jsonpath";
 
-    const json = writable({json: true});
+    export let value: string;
+    export let showPathList = true;
+
+    const json = writable(JSON.parse(value));
     window.json = json;
 
 	$: result = $json as any;
+    $: list = pathList.subscribe(n => list = n);
 </script>
 
 <div class="jsonpath">
@@ -26,6 +29,9 @@
 		{/if}
 	{/key}
 </div>
+{#if showPathList}
+    "pathList": <span class="jsonpath-list">{list}</span>
+{/if}
 
 <style>
 	.options {
@@ -53,6 +59,9 @@
 	.input {
 		font-size: 14px;
 	}
+    .jsonpath-list {
+        user-select: all;
+    }
 
 	@media screen and (min-width: 600px) {
 		.main {
@@ -71,7 +80,7 @@
 	}
 	.json {
 		padding-left: 8px;
-		height: 100%;
+		/* height: 100%; */
 		flex-grow: 1;
 		overflow: auto;
 	}
