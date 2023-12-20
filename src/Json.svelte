@@ -2,16 +2,20 @@
     import { writable } from "svelte/store";
 	import Obj from "./Obj.svelte";
 	import List from "./List.svelte";
-	import {path, fold, pathList} from "./jsonpath";
+	import {path, fold, pathList, showPathList} from "./jsonpath";
 
     export let value: string;
-    export let showPathList = true;
+    export let list = [];
+    export let showPathListDiv = false;
 
     const json = writable(JSON.parse(value));
+
     window.json = json;
+    window.showPathList = showPathList;
 
 	$: result = $json as any;
-    $: list = pathList.subscribe(n => list = n);
+    $: pathList.subscribe(n => list = n);
+    $: showPathList.subscribe(n => showPathListDiv = n);
 </script>
 
 <div class="jsonpath">
@@ -29,7 +33,7 @@
 		{/if}
 	{/key}
 </div>
-{#if showPathList}
+{#if showPathListDiv}
     "pathList": <span class="jsonpath-list">{list}</span>
 {/if}
 

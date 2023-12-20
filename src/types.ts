@@ -5,6 +5,9 @@ declare global {
     interface Window {
         json: {
             set: any;
+        },
+        showPathList: {
+            set: any;
         }
     }
 }

@@ -3,8 +3,7 @@ import { writable } from "svelte/store";
 export const path = writable("$");
 export const fold = writable(false);
 export const pathList = writable([]);
-
-(window as any).list = pathList;
+export const showPathList = writable(false);
 
 fold.subscribe(fold => {
     console.log({fold});
