@@ -88,14 +88,24 @@
 		flex-grow: 1;
 		overflow: auto;
 	}
+    :global(.folded::before) {
+        background-color: var(--vscode-editor-foreground)
+    }
+
+    :global(.unfolded::before) {
+        background-color: var(--vscode-editor-foreground)
+    }
     :global(body) {
         background-color: var(--vscode-editor-background);
         color:var(--vscode-editor-foreground);
     }
     :global(.folded::before) {
         content: "";
-        background:  url(../assets/folded.svg);
-        background-size: 10px;
+        -webkit-mask-image: url(../assets/folded.svg);
+        mask-image: url(../assets/folded.svg);
+        -webkit-mask-size: cover;
+        mask-size: cover;
+        vertical-align: middle;
         background-size: contain;
         width: 15px;
         height: 15px;
@@ -103,8 +113,11 @@
     }
     :global(.unfolded::before) {
         content: "";
-        background:  url(../assets/unfolded.svg);
-        background-size: 10px;
+        -webkit-mask-image: url(../assets/folded.svg);
+        mask-image: url(../assets/folded.svg);
+        -webkit-mask-size: cover;
+        mask-size: cover;
+        vertical-align: middle;
         background-size: contain;
         width: 15px;
         height: 15px;
