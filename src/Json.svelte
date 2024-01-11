@@ -16,6 +16,7 @@
     var result: any
 	$: {
         pathList.set([]);
+        // FIXME: if put this same value, pathList will keep empty
         result = $json;
     }
     $: list = $pathList;
