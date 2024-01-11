@@ -13,7 +13,8 @@
     const space = " ".repeat(level * 4);
 
     $: type = typeof value === "boolean" ? "boolean" : typeof value === "number" ? "number" : "string";
-    pathList.update(n => n = [...n, jsonpath]);
+
+    $: pathList.update(n => n = [...n, jsonpath]);
     function showPath() {
         path.update(n => n = jsonpath);
     }

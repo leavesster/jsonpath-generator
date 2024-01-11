@@ -13,9 +13,13 @@
     window.json = json;
     window.showPathList = showPathList;
 
-	$: result = $json as any;
-    $: pathList.subscribe(n => list = n);
-    $: showPathList.subscribe(n => showPathListDiv = n);
+    var result: any
+	$: {
+        pathList.set([]);
+        result = $json;
+    }
+    $: list = $pathList;
+    $: showPathListDiv = $showPathList;
 </script>
 
 <div class="jsonpath">
