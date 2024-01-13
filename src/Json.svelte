@@ -23,7 +23,7 @@
 </script>
 
 <div class="jsonpath">
-	<label class="options"><input type="checkbox" name="fold" bind:checked={$fold}>折叠子项</label>
+	<label class="options"><input type="checkbox" name="fold" bind:checked={$fold}>Collapse</label>
 	<div class="path">
 		<span class="prefix">JSONPath: </span><span class="result">{$path}</span>
 	</div>
