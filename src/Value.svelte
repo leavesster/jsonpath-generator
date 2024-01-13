@@ -14,7 +14,10 @@
 
     $: type = typeof value === "boolean" ? "boolean" : typeof value === "number" ? "number" : "string";
 
-    $: pathList.update(n => n = [...n, jsonpath]);
+    $: {
+        pathList.update(n => n = [...n, jsonpath]);
+        value;
+    }
     function showPath() {
         path.update(n => n = jsonpath);
     }
