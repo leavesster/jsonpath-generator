@@ -13,19 +13,24 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3.0.0
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
+          node-version: 22
           cache: "npm"
+          cache-dependency-path: package-lock.json
       - name: build
         run: |
-          npm install
+          npm ci
           npm run build
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
